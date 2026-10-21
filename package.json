@@ -1,0 +1,10 @@
+{
+  "name": "consultation-nourrisson",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "assets": "capacitor-assets generate --android",
+    "sync": "cap sync android",
+    "open": "cap open android"
+  }
+}

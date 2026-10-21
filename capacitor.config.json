@@ -1,0 +1,8 @@
+{
+  "appId": "ne.exemple.consultationnourrisson",
+  "appName": "Consultation Nourrisson",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": false
+  }
+}

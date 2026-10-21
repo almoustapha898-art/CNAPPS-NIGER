@@ -1,0 +1,20 @@
+name: Créer la clé de signature (à lancer une seule fois)
+on:
+  workflow_dispatch:
+jobs:
+  cle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Générer la clé
+        run: |
+          PASS=$(openssl rand -hex 12)
+          keytool -genkeypair -keystore release.keystore -alias cle -keyalg RSA -keysize 2048 -validity 10000 -storepass "$PASS" -keypass "$PASS" -dname "CN=Consultation Nourrisson, C=NE"
+          base64 -w0 release.keystore > keystore.b64
+          printf "KS_PASS=%s\nKEY_PASS=%s\nKEY_ALIAS=cle\n" "$PASS" "$PASS" > infos.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cle-de-signature
+          path: |
+            release.keystore
+            keystore.b64
+            infos.txt
